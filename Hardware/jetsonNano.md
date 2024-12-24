@@ -201,7 +201,7 @@ $ sudo reboot  # Restarts Jetson
 5) Run [ROS2 Humble Docker Container][Jetson ROS Containers](https://github.com/dusty-nv/jetson-containers/tree/master/packages/ros). Note this can be run with [additional flags](https://github.com/dusty-nv/jetson-containers/blob/master/docs/run.md) depending on need: 
 
 ```bash
-sudo docker run --runtime nvidia -it --rm --network=host dustynv/ros:humble-desktop-l4t-r36.2.0 
+jetson-containers build --name=humble ros:humble-desktop  # May give an error due to python version
 ```
 
 NOTE: ROS is build from source in this container. Thus, be careful not to install any addition ROS packages from apt. Instead, they must be build from source as well. There is a [helper script](https://github.com/dusty-nv/jetson-containers/blob/master/packages/ros/ros2_install.sh) provided. Likewise, there is more configurable settings (power usage, container storage, GUI etc) with instructions available in the [NVIDIA Docker Repo](https://github.com/dusty-nv/jetson-containers/blob/master/docs/setup.md).
