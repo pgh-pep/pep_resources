@@ -17,7 +17,7 @@ Required Items: (If missing anything, ask Varun)
 
 ## 1. Flashing Image to MicroSD Card
 
-1) Download the [Jetson Nano Developer Kit SD Card Image](https://developer.nvidia.com/jetson-nano-sd-card-image)
+1) Download the [Jetson Nano Developer Kit SD Card Image](https://developer.nvidia.com/jetson-nano-sd-card-image) (JetPack 4.6.1)
 2) Install [Etcher](https://etcher.balena.io/)
 3) Insert your microSD card. Select the recently downloaded image and the microSD card
 4) Flash the image (will take 10-15 mins)
@@ -46,7 +46,7 @@ Required Items: (If missing anything, ask Varun)
 2) Plug in the Jetson (will take ~1 minute to boot)
 3) To confirm you are detecting the Jetson:
 
-```bash
+```shell
 $ lsusb 
 ...
 Bus 001 Device 023: ID 0955:7020 NVIDIA Corp. L4T (Linux for Tegra) running on Tegra
@@ -58,7 +58,7 @@ $ sudo dmesg | grep --color 'tty'
 
 4) To get serial port for the Jetson: (Note that this usually will be `/dev/ttyACM0`)
 
-```bash
+```shell
 $ ls -l /dev/ttyACM0
 crw-rw---- 1 root dialout 166, 0 Oct  2 02:45 /dev/ttyACM0
 ```
@@ -77,7 +77,7 @@ crw-rw---- 1 root dialout 166, 0 Oct  2 02:45 /dev/ttyACM0
 2) If using a display, simply copy and extract the drivers into the User directory
 3) If headless, the process to extract a file from a USB Drive is more involved:
 
-```bash
+```shell
 $ sudo fdisk -l  # Find the disk name: (ex. /dev/sda1)
 ...
 /dev/sda1  *     2048 30463999 30461952 14.5G  c W95 FAT32 (LBA)
@@ -94,7 +94,7 @@ $ sudo umount /home/$USER/usbMount  # Unmount the USB drive
 4) Remove the USB Drive from the Jetson. 
 5) To download the drivers:
 
-```bash
+```shell
 $ cd /home/$USER/EW-7811Un_V2_Linux_Driver_1.0.1.3  # Enter directory of drivers
 
 $ export ARCH=arm64
@@ -110,7 +110,7 @@ $ sudo reboot now
 7) Log in. If you have a display, in the top right corner simply select the Wi-Fi network from those available in the “Wi-Fi Network” tab.
 8) If you are headless, you will need to connect to Wi-Fi using the terminal:
 
-```bash
+```shell
 $ ifconfig wlan0 # Ensure you can see an output to ensure Wi-Fi drivers are correctly installed
 
 $ nmcli d  # List all of our possible network connections (Another check to ensure wlan0 is working) 
@@ -127,3 +127,35 @@ $ ping 8.8.8.8  # Test connection, should not return 0 as that means no connecti
 ```
 
 ## 4. Set up SSH Connection
+
+1) Get the IP address of the jetson:
+
+```shell
+$ ifconfig wlan0  # Display Jetson Internet information
+
+wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet xxx.xx.x.xx  netmask 255.255.255.0  broadcast xxx.xx.x.xxx
+        ...
+```
+
+The IP address is the 4 numbers seperated by three periods after inet.
+
+2) In your host machine, connect via SSH:
+
+```shell
+$ ssh <Account Name>@<IP Address>  # Account name is on the right hand side of the Jetson Ubuntu CLI (accountName@Jetson)
+
+# Example:
+$ ssh varunJetson@123.45.6.78
+```
+
+3) Follow CLI prompts (Select Yes and enter password)
+
+4) You are now connected to the Jetson via SSH. You can remove the USB connection and continue to interface with the Jetson
+
+
+
+## Additional Jetson Resources:
+1) https://developer.nvidia.com/embedded/downloads#?search=Jetson%20Nano
+2) https://jetsonhacks.com/2019/08/21/jetson-nano-headless-setup/
+3) https://learn.sparkfun.com/tutorials/adding-wifi-to-the-nvidia-jetson/all
