@@ -64,6 +64,12 @@ crw-rw---- 1 root dialout 166, 0 Oct  2 02:45 /dev/ttyACM0
 ```
 
 5) To establish a serial connection to the Jetson, 
+
+```shell
+$ sudo screen /dev/ttyACM0 115200
+
+```
+
 6) When booting, select default settings. However, when you get to `Network Configuration`, since we will be later setting up our Wi-Fi adaptors, select `dummy0`. This will fail, allowing you to then select `Do not configure the network at this time`.
 7) When finished initial setup, the Jetson will reboot, finishing initial setup.
 
@@ -125,6 +131,8 @@ $ sudo nmcli d wifi connect [SSID] password [PASSWORD]  # Connect to Wi-Fi with 
 
 $ ping 8.8.8.8  # Test connection, should not return 0 as that means no connection to internet established
 ```
+
+Note: You can disconnect from a Wi-Fi network w/ `sudo nmcli c down <SSID>`
 
 ## 4. Set up SSH Connection
 
