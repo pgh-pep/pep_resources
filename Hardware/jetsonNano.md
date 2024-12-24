@@ -150,13 +150,59 @@ $ ssh varunJetson@123.45.6.78
 ```
 
 3) Follow CLI prompts (Select Yes and enter password)
-
 4) You are now connected to the Jetson via SSH. You can remove the USB connection and continue to interface with the Jetson
 
 
+## 5. Run ROS2 Humble Docker Container
+
+1) Download and install the [jetson-containers utilities](https://github.com/dusty-nv/jetson-containers/blob/master/docs/setup.md):
+```bash
+git clone https://github.com/dusty-nv/jetson-containers
+bash jetson-containers/install.sh
+```
+
+2) Give yourself permission for docker commands: 
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+3) Change Docker Run-Time by adding `"default-runtime": "nvidia"` to your `/etc/docker/daemon.json` configuration file.
+Note that this requires you to either use vim or to install nano/gedit: `sudo <vim/nano/gedit> /etc/docker/daemon.json`
+
+```bash
+{
+    "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    },
+
+    "default-runtime": "nvidia"
+}
+```
+
+4) To enable these changes, restart Docker or reboot your system. 
+
+```bash
+$ sudo systemctl restart docker  # Restarts Docker
+$ sudo reboot  # Restarts Jetson
+```
+
+5) Run [ROS2 Humble Docker Container][Jetson ROS Containers](https://github.com/dusty-nv/jetson-containers/tree/master/packages/ros). Note this can be run with [additional flags](https://github.com/dusty-nv/jetson-containers/blob/master/docs/run.md) depending on need: 
+
+```bash
+sudo docker run --runtime nvidia -it --rm --network=host dustynv/ros:humble-desktop-l4t-r36.2.0 
+```
+
+NOTE: ROS is build from source in this container. Thus, be careful not to install any addition ROS packages from apt. Instead, they must be build from source as well. There is a [helper script](https://github.com/dusty-nv/jetson-containers/blob/master/packages/ros/ros2_install.sh) provided. Likewise, there is more configurable settings (power usage, container storage, GUI etc) with instructions available in the [NVIDIA Docker Repo](https://github.com/dusty-nv/jetson-containers/blob/master/docs/setup.md).
+
 
 ## Additional Jetson Resources:
-1) https://developer.nvidia.com/embedded/downloads#?search=Jetson%20Nano
-2) https://edimax.freshdesk.com/support/solutions/articles/14000133009-install-ew-7811un-v2-on-ubuntu-kernel-v5-4-with-official-driver
-3) https://jetsonhacks.com/2019/08/21/jetson-nano-headless-setup/
-4) https://learn.sparkfun.com/tutorials/adding-wifi-to-the-nvidia-jetson/all
+1) [NVIDIA Jetson Nano Files](https://developer.nvidia.com/embedded/downloads#?search=Jetson%20Nano)
+2) [EDIMAX Wi-Fi driver instructions](https://edimax.freshdesk.com/support/solutions/articles/14000133009-install-ew-7811un-v2-on-ubuntu-kernel-v5-4-with-official-driver)
+3) [Jetson Setup Video](https://jetsonhacks.com/2019/08/21/jetson-nano-headless-setup/)
+4) [Additional Wi-Fi installation instructions](https://learn.sparkfun.com/tutorials/adding-wifi-to-the-nvidia-jetson/all)
+5) [Docker Container Repo](https://github.com/dusty-nv/jetson-containers/tree/master?tab=readme-ov-file)
+6) [More with Docker Containers](https://jetsonhacks.com/2023/09/04/use-these-jetson-docker-containers-tutorial/)
