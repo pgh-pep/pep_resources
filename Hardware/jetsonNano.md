@@ -157,5 +157,6 @@ $ ssh varunJetson@123.45.6.78
 
 ## Additional Jetson Resources:
 1) https://developer.nvidia.com/embedded/downloads#?search=Jetson%20Nano
-2) https://jetsonhacks.com/2019/08/21/jetson-nano-headless-setup/
-3) https://learn.sparkfun.com/tutorials/adding-wifi-to-the-nvidia-jetson/all
+2) https://edimax.freshdesk.com/support/solutions/articles/14000133009-install-ew-7811un-v2-on-ubuntu-kernel-v5-4-with-official-driver
+3) https://jetsonhacks.com/2019/08/21/jetson-nano-headless-setup/
+4) https://learn.sparkfun.com/tutorials/adding-wifi-to-the-nvidia-jetson/all
