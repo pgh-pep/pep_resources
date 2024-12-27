@@ -7,5 +7,5 @@ TBD:
 2) ROS Intro (Additional, more in-depth guides)
 4) Git
 5) Ubuntu CLI
-6) Intro to CV (camera, lidar etc)
+6) Intro to CV (camera, lidar, real sense, standalone softwares to use realsense, using realsense with python and c++, opencv, cvbridge, YOLO etc)
 7) Detailed list of all hardware component specs, tutorial links, etc
