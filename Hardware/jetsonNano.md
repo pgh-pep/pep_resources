@@ -207,6 +207,11 @@ jetson-containers build --name=humble ros:humble-desktop  # May give an error du
 NOTE: ROS is build from source in this container. Thus, be careful not to install any addition ROS packages from apt. Instead, they must be build from source as well. There is a [helper script](https://github.com/dusty-nv/jetson-containers/blob/master/packages/ros/ros2_install.sh) provided. Likewise, there is more configurable settings (power usage, container storage, GUI etc) with instructions available in the [NVIDIA Docker Repo](https://github.com/dusty-nv/jetson-containers/blob/master/docs/setup.md).
 
 
+## Jetson Tips:
+
+1) [Jetson-stats](https://rnext.it/jetson_stats/index.html) is a powerful tool that can monitor and control your jetson. It can be downloaded with `sudo pip3 install -U jetson-stats` and run with `jtop`. (Will need to reboot after installing)
+
+
 ## Additional Jetson Resources:
 1) [NVIDIA Jetson Nano Files](https://developer.nvidia.com/embedded/downloads#?search=Jetson%20Nano)
 2) [EDIMAX Wi-Fi driver instructions](https://edimax.freshdesk.com/support/solutions/articles/14000133009-install-ew-7811un-v2-on-ubuntu-kernel-v5-4-with-official-driver)
@@ -214,3 +219,4 @@ NOTE: ROS is build from source in this container. Thus, be careful not to instal
 4) [Additional Wi-Fi installation instructions](https://learn.sparkfun.com/tutorials/adding-wifi-to-the-nvidia-jetson/all)
 5) [Docker Container Repo](https://github.com/dusty-nv/jetson-containers/tree/master?tab=readme-ov-file)
 6) [More with Docker Containers](https://jetsonhacks.com/2023/09/04/use-these-jetson-docker-containers-tutorial/)
+7) [Monitoring Jetson Activity](https://jetsonhacks.com/2023/02/07/jtop-the-ultimate-tool-for-monitoring-nvidia-jetson-devices/)
