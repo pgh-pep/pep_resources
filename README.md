@@ -10,3 +10,4 @@ TBD:
 5) Ubuntu CLI (FINISHED)
 6) Intro to CV (camera, lidar, real sense, standalone softwares to use realsense, using realsense with python and c++, opencv, cvbridge, YOLO etc)
 7) Detailed list of all hardware component specs, tutorial, drivers links, etc
+8) similation softwares (diff versions of gazebo, urdf vs sdf, rviz, how to launch rviz and gazebo, interacting with joystick and rqt)
