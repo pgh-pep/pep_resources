@@ -83,7 +83,6 @@ After creating your own URDF or SDF, the question then arises of how to communic
 4) **Joint State Publisher GUI**: Performs the same role as the Joint State Publisher but launches a GUI to allow you to manually send messages that control joint states.
 5) **Spawn Entity**: Initial publishing of your robot's description
 
-
 To see the basics of implementing SDF's into a launch file, look at the [Gazebo Garden Tutorials](https://gazebosim.org/docs/garden/ros2_interop/) and the official [example project](example project) provided.
 
 
