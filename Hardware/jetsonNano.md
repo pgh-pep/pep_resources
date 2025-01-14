@@ -59,14 +59,15 @@ $ sudo dmesg | grep --color 'tty'
 4) To get serial port for the Jetson: (Note that this usually will be `/dev/ttyACM0`)
 
 ```shell
-$ ls -l /dev/ttyACM0
+ls -l /dev/ttyACM0
+...
 crw-rw---- 1 root dialout 166, 0 Oct  2 02:45 /dev/ttyACM0
 ```
 
 5) To establish a serial connection to the Jetson, 
 
 ```shell
-$ sudo screen /dev/ttyACM0 115200
+sudo screen /dev/ttyACM0 115200
 
 ```
 
@@ -88,28 +89,21 @@ $ sudo fdisk -l  # Find the disk name: (ex. /dev/sda1)
 ...
 /dev/sda1  *     2048 30463999 30461952 14.5G  c W95 FAT32 (LBA)
 
-$ mkdir /home/$USER/usbMount  # Make a directory to mount the USB drive to
-
-$ sudo mount /dev/sda1 /home/$USER/usbMount  # Mount the USB drive, change sda1 to disk game found w/ fdisk
-
-$ unzip /home/$USER/usbMount/EW-7811Un_V2_Linux_Driver_1.0.1.3.zip -d /home/$USER  # Unzip the drivers to the User directory
-
-$ sudo umount /home/$USER/usbMount  # Unmount the USB drive
+mkdir /home/$USER/usbMount  # Make a directory to mount the USB drive to
+sudo mount /dev/sda1 /home/$USER/usbMount  # Mount the USB drive, change sda1 to disk game found w/ fdisk
+unzip /home/$USER/usbMount/EW-7811Un_V2_Linux_Driver_1.0.1.3.zip -d /home/$USER  # Unzip the drivers to the User directory
+sudo umount /home/$USER/usbMount  # Unmount the USB drive
 ```
 
 4) Remove the USB Drive from the Jetson. 
 5) To download the drivers:
 
 ```shell
-$ cd /home/$USER/EW-7811Un_V2_Linux_Driver_1.0.1.3  # Enter directory of drivers
-
-$ export ARCH=arm64
-
-$ make
-
-$ sudo make install
-
-$ sudo reboot now
+cd /home/$USER/EW-7811Un_V2_Linux_Driver_1.0.1.3  # Enter directory of drivers
+export ARCH=arm64
+make
+sudo make install
+sudo reboot now
 ```
 
 6) The Jetson will restart and you should see the USB Wi-Fi adapter flash blue as it boots up.
@@ -117,19 +111,19 @@ $ sudo reboot now
 8) If you are headless, you will need to connect to Wi-Fi using the terminal:
 
 ```shell
-$ ifconfig wlan0 # Ensure you can see an output to ensure Wi-Fi drivers are correctly installed
+ifconfig wlan0 # Ensure you can see an output to ensure Wi-Fi drivers are correctly installed
 
-$ nmcli d  # List all of our possible network connections (Another check to ensure wlan0 is working) 
+nmcli d  # List all of our possible network connections (Another check to ensure wlan0 is working) 
 DEVICE   TYPE      STATE        CONNECTION 
 wlan0    wifi      disconnected    --
 
-$ nmcli r wifi on  # Turn on Wi-Fi modules
+nmcli r wifi on  # Turn on Wi-Fi modules
 
-$ nmcli d wifi list  # Scan and list all visible WiFi networks available
+nmcli d wifi list  # Scan and list all visible WiFi networks available
 
-$ sudo nmcli d wifi connect [SSID] password [PASSWORD]  # Connect to Wi-Fi with name and password
+sudo nmcli d wifi connect [SSID] password [PASSWORD]  # Connect to Wi-Fi with name and password
 
-$ ping 8.8.8.8  # Test connection, should not return 0 as that means no connection to internet established
+ping 8.8.8.8  # Test connection, should not return 0 as that means no connection to internet established
 ```
 
 Note: You can disconnect from a Wi-Fi network w/ `sudo nmcli c down <SSID>`
@@ -139,7 +133,7 @@ Note: You can disconnect from a Wi-Fi network w/ `sudo nmcli c down <SSID>`
 1) Get the IP address of the jetson:
 
 ```shell
-$ ifconfig wlan0  # Display Jetson Internet information
+ifconfig wlan0  # Display Jetson Internet information
 
 wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet xxx.xx.x.xx  netmask 255.255.255.0  broadcast xxx.xx.x.xxx
@@ -151,10 +145,10 @@ The IP address is the 4 numbers seperated by three periods after inet.
 2) In your host machine, connect via SSH:
 
 ```shell
-$ ssh <Account Name>@<IP Address>  # Account name is on the right hand side of the Jetson Ubuntu CLI (accountName@Jetson)
+ssh <Account Name>@<IP Address>  # Account name is on the right hand side of the Jetson Ubuntu CLI (accountName@Jetson)
 
 # Example:
-$ ssh varunJetson@123.45.6.78
+ssh varunJetson@123.45.6.78
 ```
 
 3) Follow CLI prompts (Select Yes and enter password)
@@ -194,8 +188,8 @@ Note that this requires you to either use vim or to install nano/gedit: `sudo <v
 4) To enable these changes, restart Docker or reboot your system. 
 
 ```bash
-$ sudo systemctl restart docker  # Restarts Docker
-$ sudo reboot  # Restarts Jetson
+sudo systemctl restart docker  # Restarts Docker
+sudo reboot  # Restarts Jetson
 ```
 
 5) Run [ROS2 Humble Docker Container][Jetson ROS Containers](https://github.com/dusty-nv/jetson-containers/tree/master/packages/ros). Note this can be run with [additional flags](https://github.com/dusty-nv/jetson-containers/blob/master/docs/run.md) depending on need: 
