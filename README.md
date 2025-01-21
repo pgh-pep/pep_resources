@@ -13,3 +13,4 @@ TBD:
 8) similation softwares (diff versions of gazebo, urdf vs sdf, rviz, how to launch rviz and gazebo, interacting with joystick and rqt)
 9) Microcontrollers
 10) gpio, PWM, servos, steppers etc
+11) basic concepts of robot mapping and localization (ex. particles, KF, EKF, SLAM, gmapping)
