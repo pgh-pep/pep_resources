@@ -192,7 +192,7 @@ sudo systemctl restart docker  # Restarts Docker
 sudo reboot  # Restarts Jetson
 ```
 
-5) Run [ROS2 Humble Docker Container][Jetson ROS Containers](https://github.com/dusty-nv/jetson-containers/tree/master/packages/ros). Note this can be run with [additional flags](https://github.com/dusty-nv/jetson-containers/blob/master/docs/run.md) depending on need: 
+5) Run [ROS2 Humble Docker Container](https://github.com/dusty-nv/jetson-containers/tree/master/packages/ros). Note this can be run with [additional flags](https://github.com/dusty-nv/jetson-containers/blob/master/docs/run.md) depending on need: 
 
 ```bash
 jetson-containers build --name=humble ros:humble-desktop  # May give an error due to python version
