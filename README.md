@@ -16,3 +16,6 @@ TBD:
 11) basic concepts of robot mapping and localization (ex. particles, KF, EKF, SLAM, mapping)
 
 transforms
+
+
+note for varun, add links as a table of content at start of longer docs (ex. ros setup needs links to jump to windows, mac, linux )
