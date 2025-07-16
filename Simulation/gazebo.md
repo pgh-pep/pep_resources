@@ -5,7 +5,7 @@ This document is meant to serve as an introduction to Gazebo, a key robotics sim
 
 ## Gazebo Versions
 
-With recent updates, the term Gazebo can be confusing due to multiple versions. As of recent updates, the simulation software Gazebo has three main classifications. The original is Gazebo Classic (which used to be called just Gazebo). Versions of Gazebo Classic have numbers (ex. Gazebo 11). The successor to Gazebo Classic is Ignition. However, as of the beginning of 2025, Gazebo Classis has reached EOL and Ignition has been rebranded into just Gazebo. Versions of the new Gazebo are words (ex. Gazebo Garden, Gazebo Harmonic). We will be using Gazebo Garden.
+With recent updates, the term Gazebo can be confusing due to multiple versions. As of recent updates, the simulation software Gazebo has three main classifications. The original is Gazebo Classic (which used to be called just Gazebo). Versions of Gazebo Classic have numbers (ex. Gazebo 11). The successor to Gazebo Classic is Ignition. However, as of the beginning of 2025, Gazebo Classic has reached EOL, and Ignition has been rebranded into just Gazebo. Versions of the new Gazebo are words (ex. Gazebo Garden, Gazebo Harmonic). We will be using Gazebo Garden.
 
 Be careful getting help from online forums as the different simulation engines have slightly different uses.
 
@@ -21,7 +21,7 @@ sudo apt remove ign*  # Check the list of what is being removed before confirmin
 sudo apt-get remove gazebo*  
 ```
 
-First install necessary tools:
+First, install the necessary tools:
 
 ```bash
 sudo apt-get update
@@ -62,13 +62,13 @@ While Gazebo can be used with CLI tools, I recommend learning how to set up laun
 
 URDFs (Unified Robot Description Format) and SDFs (Simulation Description Format) are both methods of describing objects and environments for robot simulation.
 
-In both, your robot will be composed of a series of links (think body parts) connected by joints. These links can have varying physical properties and can be associated with an STL or DAE file to display a custom model. Likewise, joints can be heavily customed to perform different tasks
+In both, your robot will be composed of a series of links (think body parts) connected by joints. These links can have varying physical properties and can be associated with an STL or DAE file to display a custom model. Likewise, joints can be heavily customized to perform different tasks
 
 Traditionally, URDF is supported by ROS (and has more support on online forums due to being around for longer than SDFs), is slightly simpler, and focuses only on defining robots. 
 
 In contrast, SDF is supported by Gazebo and is slightly more complex due to its ability to define both robots and environments. However, SDF is extremely powerful, having a range of plugins that allow for easy simulation of advanced physics and sensors.
 
-More information regarding using URDF's can be found on the [ROS2 Humble documentation](https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/URDF-Main.html).
+More information regarding using URDFs can be found on the [ROS2 Humble documentation](https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/URDF-Main.html).
 
 More information regarding SDFs can be found on the [Gazebo Garden documentation](https://gazebosim.org/docs/latest/building_robot/).
 
@@ -83,14 +83,14 @@ After creating your own URDF or SDF, the question then arises of how to communic
 4) **Joint State Publisher GUI**: Performs the same role as the Joint State Publisher but launches a GUI to allow you to manually send messages that control joint states.
 5) **Spawn Entity**: Initial publishing of your robot's description
 
-To see the basics of implementing SDF's into a launch file, look at the [Gazebo Garden Tutorials](https://gazebosim.org/docs/garden/ros2_interop/) and the official [example project](example project) provided.
+To see the basics of implementing SDFs into a launch file, look at the [Gazebo Garden Tutorials](https://gazebosim.org/docs/garden/ros2_interop/) and the official [example project](example project) provided.
 
 
 ## ros_gz_bridge vs gazebo_ros
 
 `ros_gz_bridge` and `gazebo_ros` are both packages meant to help integrate ROS with Gazebo. 
 
-`gazebo_ros` is the older choice for this task. It allows you to use ROS topics, services, and actions to communicate with Gazebo. For instance, you can to publish sensor data from Gazebo to ROS or send commands from ROS to Gazebo.
+`gazebo_ros` is the older choice for this task. It allows you to use ROS topics, services, and actions to communicate with Gazebo. For instance, you can publish sensor data from Gazebo to ROS or send commands from ROS to Gazebo.
 
 `ros_gz_bridge` is the newer preferred choice for integrating only ROS2 with newer versions of Gazebo. It is a little more involved as it requires the creation of a `bridge.yaml` file to manually specify what information and data type you would like to bridge from ROS to Gazebo and vice versa. This allows for more flexibility and dynamic topic remapping in your projects. (Highly recommend learning how to use the bridge)
 
